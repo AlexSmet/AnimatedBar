@@ -1,15 +1,15 @@
 # AnimatedBar
 
-[![CI Status](https://img.shields.io/travis/Alex Smetannikov/AnimatedBar.svg?style=flat)](https://travis-ci.org/Alex Smetannikov/AnimatedBar)
 [![Version](https://img.shields.io/cocoapods/v/AnimatedBar.svg?style=flat)](https://cocoapods.org/pods/AnimatedBar)
-[![License](https://img.shields.io/cocoapods/l/AnimatedBar.svg?style=flat)](https://cocoapods.org/pods/AnimatedBar)
-[![Platform](https://img.shields.io/cocoapods/p/AnimatedBar.svg?style=flat)](https://cocoapods.org/pods/AnimatedBar)
+[![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)
+[![Language](https://img.shields.io/badge/language-swift-orange.svg?style=flat)](https://swift.org/about/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
+
+![animatedBar](https://user-images.githubusercontent.com/25868364/55669201-38496080-587d-11e9-9254-883552d1582c.gif)
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
 
 ## Installation
 
