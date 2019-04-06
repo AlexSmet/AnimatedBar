@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +20,68 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzZ-qq-iz5" customClass="AnimatedBar" customModule="AnimatedBar">
+                                <rect key="frame" x="26" y="120" width="323" height="20"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="KWa-41-qKL"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-3x-6LL" customClass="AnimatedBar" customModule="AnimatedBar">
+                                <rect key="frame" x="26" y="170" width="323" height="20"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="wmA-y1-wdm"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWq-Ub-Ovq" customClass="AnimatedBar" customModule="AnimatedBar">
+                                <rect key="frame" x="26" y="220" width="323" height="20"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="oE8-No-xwe"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggh-NI-ooM">
+                                <rect key="frame" x="137.5" y="290" width="100" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2hr-pp-lhu"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="RTf-Vj-3t1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="START">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPushSartButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DDf-D7-SeX"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hLg-3x-6LL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="6o0-Je-Yt1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KzZ-qq-iz5" secondAttribute="trailing" constant="10" id="DnL-Yk-ets"/>
+                            <constraint firstItem="ggh-NI-ooM" firstAttribute="top" secondItem="dWq-Ub-Ovq" secondAttribute="bottom" constant="50" id="Hbf-Cx-eCw"/>
+                            <constraint firstItem="ggh-NI-ooM" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="RbN-ll-Lc8"/>
+                            <constraint firstItem="KzZ-qq-iz5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="bLW-2k-i1E"/>
+                            <constraint firstItem="dWq-Ub-Ovq" firstAttribute="top" secondItem="hLg-3x-6LL" secondAttribute="bottom" constant="30" id="ck6-PL-E43"/>
+                            <constraint firstItem="hLg-3x-6LL" firstAttribute="top" secondItem="KzZ-qq-iz5" secondAttribute="bottom" constant="30" id="g91-pG-xna"/>
+                            <constraint firstItem="dWq-Ub-Ovq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="iba-9g-w7V"/>
+                            <constraint firstItem="KzZ-qq-iz5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="jTL-L0-3e7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dWq-Ub-Ovq" secondAttribute="trailing" constant="10" id="mNv-l4-R4R"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hLg-3x-6LL" secondAttribute="trailing" constant="10" id="r3H-KP-aPn"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstAnimatedBar" destination="KzZ-qq-iz5" id="99s-He-EMa"/>
+                        <outlet property="secondAnimatedBar" destination="hLg-3x-6LL" id="6fP-Ff-sYa"/>
+                        <outlet property="thirdAnimatedBar" destination="dWq-Ub-Ovq" id="FaH-zE-ZG3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
