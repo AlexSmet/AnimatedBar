@@ -5,6 +5,8 @@
 [![Language](https://img.shields.io/badge/language-swift-orange.svg?style=flat)](https://swift.org/about/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
 
+![animatedBar](https://user-images.githubusercontent.com/25868364/55669201-38496080-587d-11e9-9254-883552d1582c.gif)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
