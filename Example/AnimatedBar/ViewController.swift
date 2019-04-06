@@ -30,6 +30,8 @@ class ViewController: UIViewController {
         firstAnimatedBar.backgroundColor = .clear
         firstAnimatedBar.barColors = [UIColor(red: 67/255, green: 198/255, blue: 172/255, alpha: 1),
                                       UIColor(red: 248/255, green: 255/255, blue: 174/255, alpha: 1)]
+        firstAnimatedBar.borderColor = .lightGray
+        firstAnimatedBar.borderWidth = 0.5
 
         secondAnimatedBar.backgroundColor = .clear
         secondAnimatedBar.barColors = [UIColor(red: 252/255, green: 92/255, blue: 125/255, alpha: 1),
@@ -39,16 +41,14 @@ class ViewController: UIViewController {
         thirdAnimatedBar.backgroundColor = .clear
         thirdAnimatedBar.barColors = [UIColor(red: 0/255, green: 12/255, blue: 64/255, alpha: 1),
                                       .white]
-        thirdAnimatedBar.borderColor = .lightGray
-        thirdAnimatedBar.borderWidth = 0.5
     }
 
     func animateBars() {
-        thirdAnimatedBar.setPosition(0, withDuration: 0)  // Just cleaning bar
+        thirdAnimatedBar.setPosition(0, withDuration: 0)  // Just cleaning bar before using
 
-        firstAnimatedBar.setPosition(0.2, withDuration: 1.4)
-        secondAnimatedBar.setPosition(0.9, withDuration: 1.4) { _ in
-            self.thirdAnimatedBar.setPosition(0.9, withDuration: 1.4)
+        firstAnimatedBar.setPosition(0.6, withDuration: 1.4)
+        secondAnimatedBar.setPosition(0.8, withDuration: 1.4) { _ in
+            self.thirdAnimatedBar.setPosition(0.95, withDuration: 1.4)
         }
     }
 
