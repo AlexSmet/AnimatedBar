@@ -42,7 +42,7 @@ public class AnimatedBar: UIView, CAAnimationDelegate {
 
     /// Устанавливает заполненность индикатора
     /// - Parameters:
-    ///   - progress: значение заполненности индикатора от 0 до 1
+    ///   - position: значение заполненности индикатора от 0 до 1
     ///   - withDuration: длительность анимации
     ///   - completion: необязательный параметр, функция которая будет вызвана после окончания анимации
     public func setPosition(_ position: CGFloat, withDuration animationDuration: Double, completion: ((Bool) -> Void)? = nil) {
@@ -105,10 +105,10 @@ private class GradientLayer: CAShapeLayer {
         return super.needsDisplay(forKey: key)
     }
 
-    override func draw(in ctx: CGContext) {
-        super.draw(in: ctx)
+    override func draw(in context: CGContext) {
+        super.draw(in: context)
 
-        UIGraphicsPushContext(ctx)
+        UIGraphicsPushContext(context)
 
         var tailLength = gradientTailLength
         if progress == 0 || progress == 1 {
@@ -116,30 +116,43 @@ private class GradientLayer: CAShapeLayer {
         }
 
         let progressLength = bounds.width * progress
-        let width = bounds.width
-        let height = bounds.height
 
         // Draw border
-        if let borderColor1 = aBorderColor {
-            let borderPath = UIBezierPath()
-            UIColor(cgColor: borderColor1).setStroke()
-            borderPath.lineWidth = aBorderWidth
-            let borderWidth2 = aBorderWidth / 2
-            if progress == 0 {
-                borderPath.move(to: CGPoint(x: progressLength - tailLength + borderWidth2, y: height - borderWidth2))
-                borderPath.addLine(to: CGPoint(x: progressLength - tailLength + borderWidth2, y: borderWidth2))
-            } else {
-                borderPath.move(to: CGPoint(x: progressLength - tailLength, y: borderWidth2))
-            }
-            borderPath.addLine(to: CGPoint(x: width - borderWidth2, y: borderWidth2))
-            borderPath.addLine(to: CGPoint(x: width - borderWidth2, y: height - borderWidth2))
-            borderPath.addLine(to: CGPoint(x: progressLength - borderWidth2, y: height - borderWidth2))
-            borderPath.stroke()
-            borderPath.close()
+        if let borderColor = aBorderColor {
+            drawBorder(color: borderColor, progressLength: progressLength, tailLength: tailLength)
         }
 
         // Draw gradient
+        drawGradient(in: context, progressLength: progressLength, tailLength: tailLength)
+
+        UIGraphicsPopContext()
+    }
+
+    private func drawBorder(color borderColor: CGColor, progressLength: CGFloat, tailLength: CGFloat) {
+        let width = bounds.width
+        let height = bounds.height
+        let borderPath = UIBezierPath()
+
+        UIColor(cgColor: borderColor).setStroke()
+        borderPath.lineWidth = aBorderWidth
+        let borderWidth2 = aBorderWidth / 2
+        if progress == 0 {
+            borderPath.move(to: CGPoint(x: progressLength - tailLength + borderWidth2, y: height - borderWidth2))
+            borderPath.addLine(to: CGPoint(x: progressLength - tailLength + borderWidth2, y: borderWidth2))
+        } else {
+            borderPath.move(to: CGPoint(x: progressLength - tailLength, y: borderWidth2))
+        }
+        borderPath.addLine(to: CGPoint(x: width - borderWidth2, y: borderWidth2))
+        borderPath.addLine(to: CGPoint(x: width - borderWidth2, y: height - borderWidth2))
+        borderPath.addLine(to: CGPoint(x: progressLength - borderWidth2, y: height - borderWidth2))
+        borderPath.stroke()
+        borderPath.close()
+    }
+
+    private func drawGradient(in context: CGContext, progressLength: CGFloat, tailLength: CGFloat) {
+        let height = bounds.height
         let gradientPath = UIBezierPath()
+
         gradientPath.move(to: CGPoint(x: 0, y: 0))
         gradientPath.addLine(to: CGPoint(x: progressLength - tailLength, y: 0))
         gradientPath.addLine(to: CGPoint(x: progressLength, y: height))
@@ -151,16 +164,14 @@ private class GradientLayer: CAShapeLayer {
         let colorSpace = CGColorSpaceCreateDeviceRGB()
 
         var colorLocations: [CGFloat] = Array(repeating: 0, count: barColors.count)
-        let space: CGFloat = 1 / CGFloat(colorLocations.count - 1)
-        for i in 1..<colorLocations.count - 1 {
+        let colorLocationsLastIndex = colorLocations.count - 1
+        let space: CGFloat = 1 / CGFloat(colorLocationsLastIndex)
+        for i in 1..<colorLocationsLastIndex{
             colorLocations[i] = space * CGFloat(i)
         }
-        colorLocations[colorLocations.count - 1] = 1
+        colorLocations[colorLocationsLastIndex] = 1
 
         let gradient = CGGradient(colorsSpace: colorSpace, colors: barColors as CFArray, locations: colorLocations)!
-
-        ctx.drawLinearGradient(gradient, start: CGPoint.zero, end: CGPoint(x: bounds.width * progress, y: 0), options: [])
-
-        UIGraphicsPopContext()
+        context.drawLinearGradient(gradient, start: CGPoint.zero, end: CGPoint(x: progressLength, y: 0), options: [])
     }
 }
